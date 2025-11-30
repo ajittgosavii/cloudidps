@@ -12,13 +12,17 @@ class Navigation:
     def render():
         """Render main navigation tabs"""
         
-        # Main tabs
+        # Main tabs - ALL MODULES
         tabs = st.tabs([
             "🏠 Dashboard",
             "👥 Account Management",
             "📦 Resource Inventory",
             "🌐 Network (VPC)",
             "🏢 Organizations",
+            "📐 Design & Planning",
+            "🚀 Provisioning",
+            "⚙️ Operations",
+            "📜 Policy & Guardrails",
             "⚡ EKS Management",
             "🔒 Security & Compliance",
             "💰 FinOps & Cost",
@@ -50,23 +54,43 @@ class Navigation:
             from modules_organizations import OrganizationsManagementUI
             OrganizationsManagementUI.render()
         
-        # Module 5: EKS Management
+        # Module 5: Design & Planning
         with tabs[5]:
+            from modules_design_planning import DesignPlanningModule
+            DesignPlanningModule.render()
+        
+        # Module 6: Provisioning & Deployment
+        with tabs[6]:
+            from modules_provisioning import ProvisioningModule
+            ProvisioningModule.render()
+        
+        # Module 7: Operations
+        with tabs[7]:
+            from modules_operations import OperationsModule
+            OperationsModule.render()
+        
+        # Module 8: Policy & Guardrails
+        with tabs[8]:
+            from modules_policy_guardrails import PolicyGuardrailsModule
+            PolicyGuardrailsModule.render()
+        
+        # Module 9: EKS Management
+        with tabs[9]:
             from modules_eks_management import EKSManagementModule
             EKSManagementModule.render()
         
-        # Module 6: Security & Compliance
-        with tabs[6]:
+        # Module 10: Security & Compliance
+        with tabs[10]:
             from modules_security_compliance import SecurityComplianceUI
             SecurityComplianceUI.render()
         
-        # Module 7: FinOps
-        with tabs[7]:
+        # Module 11: FinOps
+        with tabs[11]:
             from modules_finops import FinOpsModule
             FinOpsModule.render()
         
-        # Module 8: Account Lifecycle
-        with tabs[8]:
+        # Module 12: Account Lifecycle
+        with tabs[12]:
             from modules_account_lifecycle import AccountLifecycleModule
             AccountLifecycleModule.render()
             DesignPlanningModule.render()

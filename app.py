@@ -13,7 +13,7 @@ sys.path.append(str(Path(__file__).parent / "src"))
 
 from config_settings import AppConfig
 from core_session_manager import SessionManager
-from components_navigation_complete import Navigation
+from components_navigation import Navigation
 from components_sidebar import GlobalSidebar
 
 # Page configuration
