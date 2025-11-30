@@ -147,6 +147,10 @@ class EKSManagementModule:
         
         accounts = AppConfig.load_aws_accounts()
         
+        if not accounts:
+            st.warning("⚠️ No AWS accounts configured. Please add accounts in the Account Management module first.")
+            return
+        
         with st.form("create_eks_cluster"):
             st.markdown("#### Basic Configuration")
             
@@ -158,6 +162,10 @@ class EKSManagementModule:
                     "Target Account *",
                     options=[f"{a.account_name} ({a.account_id})" for a in accounts]
                 )
+                
+                if not selected_account:
+                    st.error("Please select an account")
+                    return
                 
                 account_id = selected_account.split('(')[1].split(')')[0]
                 account = next((a for a in accounts if a.account_id == account_id), None)

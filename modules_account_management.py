@@ -295,6 +295,10 @@ status = "active"
             options=[f"{a.account_name} ({a.account_id})" for a in accounts]
         )
         
+        if not selected_account:
+            st.warning("Please select an account")
+            return
+        
         # Find selected account
         account_id = selected_account.split('(')[1].split(')')[0]
         account = next((a for a in accounts if a.account_id == account_id), None)
