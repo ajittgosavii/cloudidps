@@ -93,7 +93,6 @@ class Navigation:
         with tabs[12]:
             from modules_account_lifecycle import AccountLifecycleModule
             AccountLifecycleModule.render()
-            DesignPlanningModule.render()
         
         # Module 5: Provisioning
         with tabs[5]:

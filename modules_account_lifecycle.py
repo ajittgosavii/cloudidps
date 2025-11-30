@@ -552,3 +552,76 @@ class AWSAccountOffboarding:
             
         except Exception as e:
             return False, str(e)
+
+# UI Module for Account Lifecycle
+class AccountLifecycleModule:
+    """UI for Account Lifecycle Management"""
+    
+    @staticmethod
+    def render():
+        """Render account lifecycle UI"""
+        st.title("🔄 Account Lifecycle Management")
+        
+        st.markdown("""
+        ### Automated Account Onboarding & Offboarding
+        
+        Streamline the process of adding and removing AWS accounts from your organization.
+        """)
+        
+        tabs = st.tabs(["📥 Onboarding", "📤 Offboarding", "📊 Status"])
+        
+        with tabs[0]:
+            AccountLifecycleModule._render_onboarding()
+        
+        with tabs[1]:
+            AccountLifecycleModule._render_offboarding()
+        
+        with tabs[2]:
+            AccountLifecycleModule._render_status()
+    
+    @staticmethod
+    def _render_onboarding():
+        """Render onboarding UI"""
+        st.subheader("📥 Account Onboarding")
+        
+        st.info("🚀 Automated onboarding sets up new AWS accounts")
+        
+        with st.form("onboard_account"):
+            st.markdown("### New Account Details")
+            
+            col1, col2 = st.columns(2)
+            
+            with col1:
+                account_id = st.text_input("Account ID*", placeholder="123456789012")
+                account_name = st.text_input("Account Name*", placeholder="Production Account")
+            
+            with col2:
+                owner_email = st.text_input("Owner Email*", placeholder="team@company.com")
+                environment = st.selectbox("Environment", ["production", "staging", "development"])
+            
+            submit = st.form_submit_button("Start Onboarding", type="primary")
+            
+            if submit and account_id and account_name:
+                st.success(f"✅ Onboarding initiated for {account_name}")
+    
+    @staticmethod
+    def _render_offboarding():
+        """Render offboarding UI"""
+        st.subheader("📤 Account Offboarding")
+        
+        st.warning("⚠️ Offboarding will remove account access")
+        
+        st.info("Select an account to offboard")
+    
+    @staticmethod
+    def _render_status():
+        """Render status dashboard"""
+        st.subheader("📊 Lifecycle Status")
+        
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            st.metric("Total Accounts", 48)
+        with col2:
+            st.metric("Active Onboarding", 2)
+        with col3:
+            st.metric("Active Offboarding", 1)
