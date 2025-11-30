@@ -263,6 +263,6 @@ class AccountLifecycleUI:
                 if st.button("⚠️ Start Offboarding", type="secondary"):
                     st.warning("Offboarding process requires confirmation")
         
-        with tabs[3]:
+        with tabs[2]:
             st.markdown("### 📊 Lifecycle Status")
             st.info("View status of ongoing onboarding/offboarding operations")
