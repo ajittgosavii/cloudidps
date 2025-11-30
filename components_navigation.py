@@ -93,23 +93,3 @@ class Navigation:
         with tabs[12]:
             from modules_account_lifecycle import AccountLifecycleModule
             AccountLifecycleModule.render()
-        
-        # Module 5: Provisioning
-        with tabs[5]:
-            from modules.provisioning import ProvisioningModule
-            ProvisioningModule.render()
-        
-        # Module 6: Operations
-        with tabs[6]:
-            from modules.operations import OperationsModule
-            OperationsModule.render()
-        
-        # Module 7: Security
-        with tabs[7]:
-            from modules.security import SecurityModule
-            SecurityModule.render()
-        
-        # Module 8: Account Lifecycle
-        with tabs[8]:
-            from modules.account_lifecycle_ui import AccountLifecycleUI
-            AccountLifecycleUI.render()
