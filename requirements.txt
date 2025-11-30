@@ -1,0 +1,38 @@
+# CloudIDP v2.0 - Python Dependencies
+
+# Core Framework
+streamlit>=1.29.0
+streamlit-aggrid>=0.3.4
+
+# AWS SDK
+boto3>=1.34.0
+botocore>=1.34.0
+
+# Data Processing
+pandas>=2.1.0
+numpy>=1.24.0
+
+# Visualization
+plotly>=5.18.0
+altair>=5.2.0
+matplotlib>=3.8.0
+
+# Utilities
+python-dotenv>=1.0.0
+pydantic>=2.5.0
+python-dateutil>=2.8.2
+
+# Caching & Performance
+streamlit-autorefresh>=0.0.1
+
+# Security & Encryption
+cryptography>=41.0.0
+
+# Testing (optional)
+pytest>=7.4.0
+pytest-cov>=4.1.0
+moto>=4.2.0  # AWS mocking for tests
+
+# Documentation (optional)
+mkdocs>=1.5.0
+mkdocs-material>=9.5.0

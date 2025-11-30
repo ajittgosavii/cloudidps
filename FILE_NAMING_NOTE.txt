@@ -1,0 +1,51 @@
+# 📝 IMPORTANT: App File Naming
+
+## ✅ **BOTH FILES INCLUDED FOR COMPATIBILITY**
+
+This package includes **TWO identical main files**:
+
+1. **streamlit_app.py** ⭐ RECOMMENDED
+2. **app.py**
+
+---
+
+## 🎯 **WHICH ONE TO USE?**
+
+### **In Streamlit Cloud Deployment:**
+
+**Use:** `streamlit_app.py` (Streamlit's default)
+
+When deploying to Streamlit Cloud:
+- Main file path: **streamlit_app.py**
+
+**Why?** Streamlit Cloud automatically looks for `streamlit_app.py` by default.
+
+---
+
+## 💡 **BOTH FILES ARE IDENTICAL**
+
+- ✅ Both have the same code
+- ✅ Both work perfectly
+- ✅ Use whichever Streamlit Cloud prefers
+- ✅ If one doesn't work, try the other
+
+---
+
+## 🚀 **RECOMMENDATION**
+
+**When deploying to Streamlit Cloud:**
+```
+Main file path: streamlit_app.py
+```
+
+**This is Streamlit's default name and will work without any issues!**
+
+---
+
+## 📦 **BOTH FILES UPLOADED**
+
+When you upload to GitHub, upload BOTH files:
+- ✅ streamlit_app.py
+- ✅ app.py
+
+Streamlit Cloud will use `streamlit_app.py` automatically! ✨
