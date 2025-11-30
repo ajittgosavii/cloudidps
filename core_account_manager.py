@@ -214,7 +214,7 @@ class AWSAccountManager:
         """Get number of cached sessions"""
         return len(self._session_cache)
 
-@st.cache_data(ttl=300)
+@st.cache_resource(ttl=300)
 def get_account_manager() -> Optional[AWSAccountManager]:
     """
     Get cached account manager instance

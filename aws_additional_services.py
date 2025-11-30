@@ -15,7 +15,6 @@ class S3Service:
         self.session = session
         self.client = session.client('s3')
     
-    @st.cache_data(ttl=300, show_spinner=False)
     def list_buckets(_self) -> Dict:
         """List all S3 buckets"""
         try:
@@ -62,7 +61,6 @@ class LambdaService:
         self.region = region
         self.client = session.client('lambda', region_name=region)
     
-    @st.cache_data(ttl=60, show_spinner=False)
     def list_functions(_self) -> Dict:
         """List all Lambda functions"""
         try:
@@ -106,7 +104,6 @@ class DynamoDBService:
         self.region = region
         self.client = session.client('dynamodb', region_name=region)
     
-    @st.cache_data(ttl=60, show_spinner=False)
     def list_tables(_self) -> Dict:
         """List all DynamoDB tables"""
         try:

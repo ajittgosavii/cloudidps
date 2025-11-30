@@ -17,7 +17,6 @@ class EC2Service:
         self.region = region
         self.client = session.client('ec2', region_name=region)
     
-    @st.cache_data(ttl=60, show_spinner=False)
     def list_instances(_self, filters: Optional[List[Dict]] = None) -> Dict:
         """
         List all EC2 instances
@@ -133,7 +132,6 @@ class EC2Service:
         except ClientError:
             return False
     
-    @st.cache_data(ttl=300, show_spinner=False)
     def get_instance_types(_self) -> List[str]:
         """Get list of available instance types"""
         try:
@@ -142,7 +140,6 @@ class EC2Service:
         except ClientError:
             return []
     
-    @st.cache_data(ttl=3600, show_spinner=False)
     def get_ami_list(_self, owners: List[str] = ['amazon']) -> List[Dict]:
         """Get list of available AMIs"""
         try:

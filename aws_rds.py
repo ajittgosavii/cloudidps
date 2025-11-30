@@ -16,7 +16,6 @@ class RDSService:
         self.region = region
         self.client = session.client('rds', region_name=region)
     
-    @st.cache_data(ttl=60, show_spinner=False)
     def list_db_instances(_self) -> Dict:
         """List all RDS database instances"""
         try:

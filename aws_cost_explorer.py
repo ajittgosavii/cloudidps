@@ -17,7 +17,6 @@ class CostExplorerService:
         # Cost Explorer is always in us-east-1
         self.client = session.client('ce', region_name='us-east-1')
     
-    @st.cache_data(ttl=3600, show_spinner=False)
     def get_monthly_cost(_self, months: int = 1) -> Dict:
         """Get monthly cost"""
         try:
@@ -52,7 +51,6 @@ class CostExplorerService:
                 'total_cost': 0
             }
     
-    @st.cache_data(ttl=3600, show_spinner=False)
     def get_cost_by_service(_self, days: int = 30) -> Dict:
         """Get cost breakdown by service"""
         try:
@@ -94,7 +92,6 @@ class CostExplorerService:
                 'costs': {}
             }
     
-    @st.cache_data(ttl=3600, show_spinner=False)
     def get_cost_trend(_self, days: int = 30) -> Dict:
         """Get daily cost trend"""
         try:
@@ -129,7 +126,6 @@ class CostExplorerService:
                 'daily_costs': []
             }
     
-    @st.cache_data(ttl=3600, show_spinner=False)
     def get_cost_forecast(_self, days: int = 30) -> Dict:
         """Get cost forecast"""
         try:
