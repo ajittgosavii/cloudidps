@@ -6,7 +6,7 @@ Automated deployment workflows using CloudFormation, multi-region, rollback
 import streamlit as st
 import pandas as pd
 from typing import Dict, List, Optional
-from core_account_manager import get_account_manager
+from core_account_manager import get_account_manager, get_account_names
 from aws_cloudformation import CloudFormationManager
 
 class ProvisioningModule:
@@ -24,7 +24,7 @@ class ProvisioningModule:
             return
         
         # Get account names
-        account_names = account_mgr.list_account_names()
+        account_names = get_account_names()
         
         if not account_names:
             st.warning("⚠️ No AWS accounts configured")

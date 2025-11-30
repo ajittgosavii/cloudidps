@@ -5,7 +5,7 @@ UI for security monitoring and compliance tracking
 
 import streamlit as st
 import pandas as pd
-from core_account_manager import get_account_manager
+from core_account_manager import get_account_manager, get_account_names
 from aws_security import SecurityManager
 from aws_cloudwatch import CloudWatchManager
 
@@ -24,7 +24,7 @@ class SecurityComplianceUI:
             return
         
         # Get account names
-        account_names = account_mgr.list_account_names()
+        account_names = get_account_names()
         
         if not account_names:
             st.warning("⚠️ No AWS accounts configured")

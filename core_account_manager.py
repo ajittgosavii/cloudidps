@@ -213,6 +213,38 @@ class AWSAccountManager:
     def get_cached_session_count(self) -> int:
         """Get number of cached sessions"""
         return len(self._session_cache)
+    
+    @staticmethod
+    def get_configured_account_names() -> List[str]:
+        """Get list of configured account names from settings"""
+        from config_settings import AppConfig
+        accounts = AppConfig.load_aws_accounts()
+        return [acc.account_name for acc in accounts]
+    
+    def get_session(self, account_name: str) -> Optional[boto3.Session]:
+        """
+        Get boto3 session for an account by name
+        
+        Args:
+            account_name: Name of the account
+            
+        Returns:
+            boto3.Session or None
+        """
+        from config_settings import AppConfig
+        accounts = AppConfig.load_aws_accounts()
+        
+        for account in accounts:
+            if account.account_name == account_name:
+                assumed_session = self.assume_role(
+                    account_id=account.account_id,
+                    account_name=account.account_name,
+                    role_arn=account.role_arn
+                )
+                if assumed_session:
+                    return assumed_session.session
+        
+        return None
 
 @st.cache_resource(ttl=300)
 def get_account_manager() -> Optional[AWSAccountManager]:
@@ -229,3 +261,14 @@ def get_account_manager() -> Optional[AWSAccountManager]:
         return None
     
     return AWSAccountManager(credentials)
+
+def get_account_names() -> List[str]:
+    """
+    Get list of configured AWS account names
+    
+    Returns:
+        List of account names
+    """
+    from config_settings import AppConfig
+    accounts = AppConfig.load_aws_accounts()
+    return [acc.account_name for acc in accounts]

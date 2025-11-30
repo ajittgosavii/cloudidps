@@ -5,7 +5,7 @@ SCP policies, tag policies, and guardrail enforcement
 
 import streamlit as st
 import pandas as pd
-from core_account_manager import get_account_manager
+from core_account_manager import get_account_manager, get_account_names
 from aws_organizations import AWSOrganizationsManager
 
 class PolicyGuardrailsModule:
@@ -25,7 +25,7 @@ class PolicyGuardrailsModule:
         st.info("📌 This module requires management account credentials")
         
         # Get account names
-        account_names = account_mgr.list_account_names()
+        account_names = get_account_names()
         
         if not account_names:
             st.warning("⚠️ No AWS accounts configured")
