@@ -6,7 +6,7 @@ Instance management, automation, scaling, and operational tasks
 import streamlit as st
 import pandas as pd
 from core_account_manager import get_account_manager, get_account_names
-from aws_ec2 import EC2Manager
+from aws_ec2 import EC2Service
 from aws_ssm import SystemsManagerManager
 
 class OperationsModule:
@@ -45,7 +45,7 @@ class OperationsModule:
             st.error("Failed to get session")
             return
         
-        ec2_mgr = EC2Manager(session)
+        ec2_svc = EC2Service(session)
         ssm_mgr = SystemsManagerManager(session)
         
         # Create tabs
@@ -58,7 +58,7 @@ class OperationsModule:
         ])
         
         with tabs[0]:
-            OperationsModule._render_instance_ops(ec2_mgr)
+            OperationsModule._render_instance_ops(ec2_svc)
         
         with tabs[1]:
             OperationsModule._render_automation(ssm_mgr)
@@ -73,12 +73,12 @@ class OperationsModule:
             OperationsModule._render_patch_management(ssm_mgr)
     
     @staticmethod
-    def _render_instance_ops(ec2_mgr: EC2Manager):
+    def _render_instance_ops(ec2_svc: EC2Service):
         """Instance operations"""
         st.subheader("💻 Instance Operations")
         
         # List instances
-        instances = ec2_mgr.list_instances()
+        instances = ec2_svc.list_instances()
         
         if not instances:
             st.info("No EC2 instances found")
