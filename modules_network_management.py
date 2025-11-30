@@ -22,12 +22,21 @@ class NetworkManagementUI:
         
         if not account_mgr:
             st.warning("⚠️ Please configure AWS credentials in Account Management")
+            st.info("👉 Go to the 'Account Management' tab to add your AWS accounts first.")
+            return
+        
+        # Get account names
+        account_names = account_mgr.list_account_names()
+        
+        if not account_names:
+            st.warning("⚠️ No AWS accounts configured")
+            st.info("👉 Go to the 'Account Management' tab to add your AWS accounts first.")
             return
         
         # Account selector
         selected_account = st.selectbox(
             "Select AWS Account",
-            options=account_mgr.list_account_names(),
+            options=account_names,
             key="network_account_selector"
         )
         

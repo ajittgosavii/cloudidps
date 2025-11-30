@@ -19,13 +19,22 @@ class PolicyGuardrailsModule:
         account_mgr = get_account_manager()
         if not account_mgr:
             st.warning("⚠️ Configure AWS credentials first")
+            st.info("👉 Go to the 'Account Management' tab to add your AWS accounts first.")
             return
         
         st.info("📌 This module requires management account credentials")
         
+        # Get account names
+        account_names = account_mgr.list_account_names()
+        
+        if not account_names:
+            st.warning("⚠️ No AWS accounts configured")
+            st.info("👉 Go to the 'Account Management' tab to add your AWS accounts first.")
+            return
+        
         selected_account = st.selectbox(
             "Select Management Account",
-            options=account_mgr.list_account_names(),
+            options=account_names,
             key="policy_account"
         )
         

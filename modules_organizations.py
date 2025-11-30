@@ -22,14 +22,23 @@ class OrganizationsManagementUI:
         
         if not account_mgr:
             st.warning("⚠️ Please configure AWS credentials in Account Management")
+            st.info("👉 Go to the 'Account Management' tab to add your AWS accounts first.")
             return
         
         # This should be the management account
         st.info("📌 This module requires management account credentials")
         
+        # Get account names
+        account_names = account_mgr.list_account_names()
+        
+        if not account_names:
+            st.warning("⚠️ No AWS accounts configured")
+            st.info("👉 Go to the 'Account Management' tab to add your AWS accounts first.")
+            return
+        
         selected_account = st.selectbox(
             "Select Management Account",
-            options=account_mgr.list_account_names(),
+            options=account_names,
             key="org_account_selector"
         )
         
