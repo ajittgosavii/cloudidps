@@ -14,6 +14,9 @@ class GlobalSidebar:
     def render():
         """Render global sidebar"""
         
+        # Initialize session state first
+        SessionManager.initialize()
+        
         with st.sidebar:
             st.markdown("### 🎛️ Global Filters")
             
@@ -26,43 +29,39 @@ class GlobalSidebar:
             selected_account = st.selectbox(
                 "Account",
                 options=account_options,
-                key='account_filter',
                 help="Select AWS account to filter resources"
             )
             
-            # Update session state
+            # Update session state based on selection
             if selected_account == 'All Accounts':
-                SessionManager.set('selected_accounts', 'all')
+                st.session_state.selected_accounts = 'all'
             else:
                 # Extract account ID from selection
                 account_id = selected_account.split('(')[1].split(')')[0]
-                SessionManager.set('selected_accounts', account_id)
+                st.session_state.selected_accounts = account_id
             
             # Region selector
             region_options = ['All Regions'] + AppConfig.DEFAULT_REGIONS
             selected_region = st.selectbox(
                 "Region",
                 options=region_options,
-                key='region_filter',
                 help="Select AWS region"
             )
             
             # Update session state
             if selected_region == 'All Regions':
-                SessionManager.set('selected_regions', 'all')
+                st.session_state.selected_regions = 'all'
             else:
-                SessionManager.set('selected_regions', selected_region)
+                st.session_state.selected_regions = selected_region
             
             # Environment filter
             env_options = ['All Environments', 'Production', 'Development', 'Staging', 'Sandbox']
             selected_env = st.selectbox(
                 "Environment",
-                options=env_options,
-                key='env_filter'
+                options=env_options
             )
             
-            SessionManager.set('selected_environment', 
-                             'all' if selected_env == 'All Environments' else selected_env.lower())
+            st.session_state.selected_environment = 'all' if selected_env == 'All Environments' else selected_env.lower()
             
             st.markdown("---")
             
@@ -71,11 +70,10 @@ class GlobalSidebar:
             time_range = st.selectbox(
                 "Period",
                 options=['Last 24 Hours', 'Last 7 Days', 'Last 30 Days', 'Last 90 Days'],
-                index=2,
-                key='time_range'
+                index=2
             )
             
-            SessionManager.set('time_range', time_range)
+            st.session_state.time_range = time_range
             
             st.markdown("---")
             
